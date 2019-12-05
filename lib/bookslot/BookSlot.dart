@@ -16,22 +16,17 @@ class _BookSlotScreenState extends State<BookSlotScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-        onWillPop: () {
-          debugPrint("on pop");
-          Navigator.pop(context);
-        },
-        child: ThemeProvider(
-          currentTheme: this.mainModule.get<ContemporaryTheme>(),
-          child: Builder(
-            builder: (context) => Container(
-                color: Theme.of(context).backgroundColor,
-                child: SafeArea(
-                  minimum: const EdgeInsets.fromLTRB(8, 35, 8, 10), //provide extra padding on all 4 sides
-                  child: _screen(context),
-                )),
-          ),
-        ));
+    return ThemeProvider(
+      currentTheme: this.mainModule.get<ContemporaryTheme>(),
+      child: Builder(
+        builder: (context) => Container(
+            color: Theme.of(context).backgroundColor,
+            child: SafeArea(
+              minimum: const EdgeInsets.fromLTRB(8, 35, 8, 10), //provide extra padding on all 4 sides
+              child: _screen(context),
+            )),
+      ),
+    );
   } //build
 
   Widget _screen(BuildContext context) {
@@ -39,51 +34,61 @@ class _BookSlotScreenState extends State<BookSlotScreen> {
     ThemeProvider.of(context).currentTheme.mediaQueryData(MediaQuery.of(context));
 
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => debugPrint("FAB pressed"),
+        child: Icon(
+          Icons.add,
+        ),
+      ),
       appBar: AppBar(
         title: Text(
           "Book your turn",
           textScaleFactor: 1.2,
         ),
         centerTitle: true,
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.save),
-            tooltip: "Search",
-            onPressed: () => debugPrint("on save"),
-          ),
-        ],
       ),
       body: _body(context),
-      //bottomNavigationBar: _bottomNav(context),
     );
   } //_screen
 
   /// build body
   Widget _body(BuildContext context) {
-    return _buildTimeSlotWidget(duration);
+    return _buildScheduleList(context);
   }
 
-  /// ***** start: bottom navbar *****
-  BottomAppBar _bottomNav(BuildContext context) {
-    return BottomAppBar(
-      elevation: 0,
-      child: Container(
-        margin: EdgeInsets.fromLTRB(0, 5, 0, 0),
-        padding: EdgeInsets.fromLTRB(20, 10, 20, 0),
-        decoration: BoxDecoration(border: Border(top: BorderSide(color: ThemeProvider.of(context).currentTheme.bottomBarBorder()))),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            IconButton(
-              icon: Icon(Icons.save),
-              tooltip: "Search",
-              onPressed: () => debugPrint("on save"),
+  Widget _buildScheduleList(BuildContext context) {
+    final List<String> entries = <String>['Shellu', 'Raju', 'Vinay'];
+    final List<String> colorCodes = <String>['9:00 - 10:00', '10:00 - 11:00', '11:00 - 12.00'];
+
+    return ListView.separated(
+      padding: const EdgeInsets.all(8),
+      itemCount: entries.length + 1, // should always have a count
+      itemBuilder: (BuildContext context, int index) {
+        ListTile listTile;
+        if (index < entries.length) {
+          listTile = ListTile(
+            title: Text('${entries[index]}'),
+            subtitle: Text('${colorCodes[index]}'),
+          );
+        } else {
+          listTile = ListTile(
+            title: Text('  '),
+            subtitle: Text('   '),
+            leading: IconButton(
+              icon: Icon(Icons.add),
+              onPressed: () => _bookMyTurn(context),
             ),
-          ],
-        ),
-      ),
+          );
+        }
+        return listTile;
+      },
+      separatorBuilder: (BuildContext context, int index) => const Divider(),
     );
+  }
+
+  _bookMyTurn(BuildContext context) {
+    // should add a record for the user in the schedule table.
+    // the list should refresh automatically
   }
 
   /// method that builds the widget with time slots starting from the current time lasting till the end of the day
