@@ -10,7 +10,7 @@ class UserEntity extends Equatable {
 
   @override
   // TODO: implement props
-  List<Object> get props => null;
+  List<Object> get props => [this.userId, this.userName, this.phoneNum];
 
   /// This method returns the object data in the form of a JSON
   Map<String, Object> toJson() {

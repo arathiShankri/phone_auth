@@ -3,7 +3,7 @@ import 'package:myturn/MainModule.dart';
 import 'package:myturn/Routes.dart';
 
 import 'core/theme/AppTheme.dart';
-import 'core/ui/HomeScreen.dart';
+import 'ui/HomeScreen.dart';
 
 void main() async {
   runApp(MyApp());

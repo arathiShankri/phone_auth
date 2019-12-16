@@ -1,8 +1,8 @@
 import 'package:flutter/widgets.dart';
 import 'package:myturn/bookslot/BookSlot.dart';
 
-import 'core/ui/HomeScreen.dart';
-import 'create_group/CreateGroupScreen.dart';
+import 'ui/HomeScreen.dart';
+import 'ui/CreateGroupScreen.dart';
 
 class Routes {
   Routes();
