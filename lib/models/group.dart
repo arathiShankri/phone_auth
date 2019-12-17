@@ -7,7 +7,7 @@ class Group extends Equatable {
   final String adminId;
   final String address;
 
-  Group(this.groupId, this.groupName, this.adminId, this.address);
+  Group({this.groupId, this.groupName, this.adminId, this.address});
 
   @override
   // instead of doing super for equatable, we are doing this.
@@ -21,6 +21,6 @@ class Group extends Equatable {
 
   /// fromEntity - This method creates the POJO back from the entity object
   static Group fromEntity(GroupEntity entity) {
-    return Group(entity.groupId, entity.groupName, entity.adminId, entity.address);
+    return Group(groupId: entity.groupId, groupName: entity.groupName, adminId: entity.adminId, address: entity.address);
   }
 }

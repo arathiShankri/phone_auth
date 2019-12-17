@@ -1,5 +1,7 @@
 import 'package:flutter_simple_dependency_injection/Injector.dart';
+import 'package:myturn/injection/GroupModule.dart';
 import 'package:myturn/core/CoreModule.dart';
+import 'package:myturn/injection/RepoModule.dart';
 
 /// AbstractModule that all modules extend to
 abstract class AbstractModule {
@@ -30,5 +32,7 @@ class MainModule extends AbstractModule {
   @override
   void configure(Injector injector) {
     CoreModule().configure(injector);
+    GroupModule().configure(injector);
+    RepoModule().configure(injector);
   }
 }

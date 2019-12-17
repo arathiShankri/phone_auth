@@ -7,6 +7,7 @@ class FirebaseGroupRepo implements AbstractGroupRepo {
   // get the instance of Firestore collection for "group" table
   final groupCollection = Firestore.instance.collection('group');
 
+  FirebaseGroupRepo();
   @override
   Future<void> addGroup(Group group) {
     // Get the Firestore document by converting the POJO to an entity to a document

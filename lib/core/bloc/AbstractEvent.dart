@@ -1,9 +1,7 @@
 import 'package:equatable/equatable.dart';
 
-abstract class AbstractState extends Equatable {
-  AbstractState();
-
-  @override
+abstract class AbstractEvent extends Equatable {
+  AbstractEvent();
   List<Object> get props => [];
   dynamic name();
 }

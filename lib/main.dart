@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:myturn/MainModule.dart';
+import 'package:myturn/injection/MainModule.dart';
 import 'package:myturn/Routes.dart';
 
 import 'core/theme/AppTheme.dart';
-import 'ui/HomeScreen.dart';
 
 void main() async {
   runApp(MyApp());

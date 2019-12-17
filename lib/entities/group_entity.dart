@@ -10,7 +10,6 @@ class GroupEntity extends Equatable {
   GroupEntity(this.groupId, this.groupName, this.adminId, this.address);
 
   @override
-  // TODO: implement props
   List<Object> get props => [this.groupId, this.groupName, this.adminId, this.address];
 
   /// This method returns the object data in the form of a JSON

@@ -1,6 +1,6 @@
 //import 'package:flutter_simple_dependency_injection/';
 import 'package:flutter_simple_dependency_injection/Injector.dart';
-import 'package:myturn/MainModule.dart';
+import 'package:myturn/injection/MainModule.dart';
 import 'package:myturn/Routes.dart';
 import 'package:myturn/core/theme/AppTheme.dart';
 

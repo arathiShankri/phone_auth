@@ -30,6 +30,5 @@ class ScheduleEntity extends Equatable {
   }
 
   @override
-  // TODO: implement props
   List<Object> get props => [this.userId, this.userName, this.slotTime, this.createdAt];
 }

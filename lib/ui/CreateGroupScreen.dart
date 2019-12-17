@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:myturn/MainModule.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:myturn/injection/GroupModule.dart';
+import 'package:myturn/injection/MainModule.dart';
+import 'package:myturn/bloc/group/group_bloc.dart';
 import 'package:myturn/core/theme/AppTheme.dart';
+import 'package:myturn/models/group.dart';
 
 class CreateGroupScreen extends StatefulWidget {
   CreateGroupScreen() : super();
@@ -11,6 +15,7 @@ class CreateGroupScreen extends StatefulWidget {
 
 class _CreateGroupScreenState extends State<CreateGroupScreen> {
   final MainModule mainModule = MainModule();
+  final GroupBloc _groupBloc = GroupModule().get<GroupBloc>();
 
   @override
   Widget build(BuildContext context) {
@@ -30,14 +35,19 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
   Widget _screen(BuildContext context) {
     ///to set common media query attributes in current theme
     ThemeProvider.of(context).currentTheme.mediaQueryData(MediaQuery.of(context));
+    return BlocBuilder(
+        bloc: _groupBloc,
+        builder: (BuildContext context, GroupState state) {
+          Scaffold _scaffold = Scaffold(
+            appBar: AppBar(),
+            body: _body(context),
+            bottomNavigationBar: _bottomNav(context),
+          );
 
-    return Scaffold(
-      appBar: AppBar(
-          //title: Text("Group"),
-          ),
-      body: _body(context),
-      bottomNavigationBar: _bottomNav(context),
-    );
+          //debugPrint("drawer open" + Scaffold.of(context).isDrawerOpen.toString());
+
+          return _scaffold;
+        });
   } //_screen
 
   /// build body
@@ -47,6 +57,8 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
 
   /// ***** start: bottom navbar *****
   BottomAppBar _bottomNav(BuildContext context) {
+    Group group = Group(groupName: "Group Name", address: "Group Address", adminId: "Admin");
+
     return BottomAppBar(
       elevation: 0,
       child: Container(
@@ -60,7 +72,9 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
             IconButton(
               icon: Icon(Icons.save),
               tooltip: "Search",
-              onPressed: () => debugPrint("on save"),
+              onPressed: () => this._groupBloc.add(GroupModule().get<AddGroup>(additionalParameters: {
+                    'group': group,
+                  })),
             ),
             IconButton(
               icon: Icon(Icons.delete),

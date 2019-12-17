@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:myturn/MainModule.dart';
+import 'package:myturn/injection/MainModule.dart';
 import 'package:myturn/Routes.dart';
 import 'package:myturn/core/theme/AppTheme.dart';
 

@@ -10,7 +10,6 @@ class Schedule extends Equatable {
   Schedule(this.userId, this.userName, this.slotTime, this.createdAt);
 
   @override
-  // TODO: implement props
   List<Object> get props => [this.userId, this.userName, this.slotTime, this.createdAt];
 
   /// toEntity - This method converts the User POJO to an entity object
