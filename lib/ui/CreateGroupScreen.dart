@@ -5,6 +5,7 @@ import 'package:myturn/injection/MainModule.dart';
 import 'package:myturn/bloc/group/group_bloc.dart';
 import 'package:myturn/core/theme/AppTheme.dart';
 import 'package:myturn/models/group.dart';
+import 'package:myturn/repo/FirebaseGroupRepo.dart';
 
 class CreateGroupScreen extends StatefulWidget {
   CreateGroupScreen() : super();
@@ -15,7 +16,13 @@ class CreateGroupScreen extends StatefulWidget {
 
 class _CreateGroupScreenState extends State<CreateGroupScreen> {
   final MainModule mainModule = MainModule();
+  // need to change the GroupBloc instantiation in GroupModule to inject FirebaseRepo object
+  //final GroupBloc _groupBloc = GroupModule().get<GroupBloc>(additionalParameters: {'groupRepo': FirebaseGroupRepo()});
   final GroupBloc _groupBloc = GroupModule().get<GroupBloc>();
+
+  static final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  Map<String, Object> _groupValues = Map();
 
   @override
   Widget build(BuildContext context) {
@@ -43,9 +50,6 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
             body: _body(context),
             bottomNavigationBar: _bottomNav(context),
           );
-
-          //debugPrint("drawer open" + Scaffold.of(context).isDrawerOpen.toString());
-
           return _scaffold;
         });
   } //_screen
@@ -57,8 +61,6 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
 
   /// ***** start: bottom navbar *****
   BottomAppBar _bottomNav(BuildContext context) {
-    Group group = Group(groupName: "Group Name", address: "Group Address", adminId: "Admin");
-
     return BottomAppBar(
       elevation: 0,
       child: Container(
@@ -72,9 +74,7 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
             IconButton(
               icon: Icon(Icons.save),
               tooltip: "Search",
-              onPressed: () => this._groupBloc.add(GroupModule().get<AddGroup>(additionalParameters: {
-                    'group': group,
-                  })),
+              onPressed: () => _onSave(),
             ),
             IconButton(
               icon: Icon(Icons.delete),
@@ -90,29 +90,68 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
     );
   }
 
+  /// This method is called on click of Save icon.
+  /// The values from the form fields are saved to the corresponding global variables so that we can use them to set to the Group object.
+  /// The Group object is then posted to GroupBloc to add the same to Firestore database.
+  void _onSave() {
+    if (_formKey.currentState.validate()) {
+      // Save the values from the textfield to the corresponding global variables
+      _formKey.currentState.save();
+
+      this._groupBloc.add(GroupModule().get<AddGroup>(additionalParameters: {
+            'group': this._createGroupObj(),
+          }));
+    }
+  }
+
+  /// This method constructors the form with textfields
   Widget _formFields() {
     return Container(
-        margin: EdgeInsets.all(15),
+      margin: EdgeInsets.all(15),
+      child: Form(
+        key: _formKey,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisSize: MainAxisSize.max,
           children: <Widget>[
-            TextField(
+            TextFormField(
+              validator: (value) {
+                if (value.isEmpty) {
+                  return 'Please enter group name!';
+                }
+                return null;
+              },
+              onSaved: (value) => _groupValues['group_name'] = value,
               decoration: InputDecoration(labelText: "Group Name"),
             ),
-            TextField(
+            TextFormField(
               decoration: InputDecoration(labelText: "Address"),
+              validator: (value) {
+                if (value.isEmpty) {
+                  return 'Please enter address!';
+                }
+                return null;
+              },
+              onSaved: (value) => _groupValues['address'] = value,
             ),
-            TextField(
-              decoration: InputDecoration(labelText: "Phone #"),
-            ),
-            TextField(
-              decoration: InputDecoration(labelText: "How many chargers are you managing?"),
-            ),
-            TextField(
-              decoration: InputDecoration(labelText: "Slot Duration in hrs"),
+            TextFormField(
+              decoration: InputDecoration(hintText: "Phone #"),
+              validator: (value) {
+                if (value.isEmpty) {
+                  return 'Please enter phone number!';
+                }
+                return null;
+              },
+              onSaved: (value) => _groupValues['phone_num'] = value,
             ),
           ],
-        ));
+        ),
+      ),
+    );
+  } // end of _formFields
+
+  /// This method gets the values from the global form variables and returns a Group object
+  Group _createGroupObj() {
+    return Group(groupName: _groupValues['group_name'], address: _groupValues['address'], adminId: "Admin", groupId: 'gid', phoneNum: _groupValues['phone_num']);
   }
 } // End of CreateGroupScreen

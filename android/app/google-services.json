@@ -1,0 +1,287 @@
+{
+  "project_info": {
+    "project_number": "81962570303",
+    "firebase_url": "https://hivesey-88262.firebaseio.com",
+    "project_id": "hivesey-88262",
+    "storage_bucket": "hivesey-88262.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:81962570303:android:9610a2205ab873aa20de8a",
+        "android_client_info": {
+          "package_name": "com.example.evcharge"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "81962570303-u2iobhsagqc13kj2uqf4ahoqnra28vbh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.evcharge",
+            "certificate_hash": "94d38c2f403ea85662034897d71f9705188ef40b"
+          }
+        },
+        {
+          "client_id": "81962570303-2tff2m4qkajovmjeaejiemunf93aph0k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAZheTGjjTWdwlWsiEdUDBhhQ9K7u3vHmI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "81962570303-2tff2m4qkajovmjeaejiemunf93aph0k.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "81962570303-2pvh0bitiucl5fds8e9e8gab9iv5ghdm.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.merya.firebasemlApp"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:81962570303:android:6a582de9e89233e3",
+        "android_client_info": {
+          "package_name": "com.merya.firebaseml_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "81962570303-2tff2m4qkajovmjeaejiemunf93aph0k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAZheTGjjTWdwlWsiEdUDBhhQ9K7u3vHmI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "81962570303-2tff2m4qkajovmjeaejiemunf93aph0k.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "81962570303-2pvh0bitiucl5fds8e9e8gab9iv5ghdm.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.merya.firebasemlApp"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:81962570303:android:e3b148cccc5788e3",
+        "android_client_info": {
+          "package_name": "com.merya.flashcardapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "81962570303-bn2ji9ue6coik2rml95dta4icid5fahg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.merya.flashcardapp",
+            "certificate_hash": "94d38c2f403ea85662034897d71f9705188ef40b"
+          }
+        },
+        {
+          "client_id": "81962570303-2tff2m4qkajovmjeaejiemunf93aph0k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAZheTGjjTWdwlWsiEdUDBhhQ9K7u3vHmI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "81962570303-2tff2m4qkajovmjeaejiemunf93aph0k.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "81962570303-2pvh0bitiucl5fds8e9e8gab9iv5ghdm.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.merya.firebasemlApp"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:81962570303:android:0bf8cf939a907e9020de8a",
+        "android_client_info": {
+          "package_name": "com.merya.myturn"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "81962570303-2tff2m4qkajovmjeaejiemunf93aph0k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAZheTGjjTWdwlWsiEdUDBhhQ9K7u3vHmI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "81962570303-2tff2m4qkajovmjeaejiemunf93aph0k.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "81962570303-2pvh0bitiucl5fds8e9e8gab9iv5ghdm.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.merya.firebasemlApp"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:81962570303:android:b2481833efc7921d",
+        "android_client_info": {
+          "package_name": "com.merya.notesey"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "81962570303-v7tb4eu9bmik97jkpbtt80qjpoam6hhl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.merya.notesey",
+            "certificate_hash": "94d38c2f403ea85662034897d71f9705188ef40b"
+          }
+        },
+        {
+          "client_id": "81962570303-2tff2m4qkajovmjeaejiemunf93aph0k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAZheTGjjTWdwlWsiEdUDBhhQ9K7u3vHmI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "81962570303-2tff2m4qkajovmjeaejiemunf93aph0k.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "81962570303-2pvh0bitiucl5fds8e9e8gab9iv5ghdm.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.merya.firebasemlApp"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:81962570303:android:b711bf7ec8733519",
+        "android_client_info": {
+          "package_name": "com.merya.todoapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "81962570303-2tff2m4qkajovmjeaejiemunf93aph0k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAZheTGjjTWdwlWsiEdUDBhhQ9K7u3vHmI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "81962570303-2tff2m4qkajovmjeaejiemunf93aph0k.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "81962570303-2pvh0bitiucl5fds8e9e8gab9iv5ghdm.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.merya.firebasemlApp"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:81962570303:android:91767d37200ba12a",
+        "android_client_info": {
+          "package_name": "com.musevisions.multipleCountersFlutter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "81962570303-2tff2m4qkajovmjeaejiemunf93aph0k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAZheTGjjTWdwlWsiEdUDBhhQ9K7u3vHmI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "81962570303-2tff2m4qkajovmjeaejiemunf93aph0k.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "81962570303-2pvh0bitiucl5fds8e9e8gab9iv5ghdm.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.merya.firebasemlApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

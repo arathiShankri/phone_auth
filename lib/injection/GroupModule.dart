@@ -30,5 +30,6 @@ class GroupModule extends AbstractModule {
 
     //bloc
     injector.map<GroupBloc>((i) => GroupBloc(groupRepo: i.get<FirebaseGroupRepo>()), isSingleton: true);
+    // injector.mapWithParams<GroupBloc>((i, p) => GroupBloc(groupRepo: p['groupRepo:']));
   }
 }

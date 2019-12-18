@@ -9,6 +9,8 @@ buildscript {
         classpath 'com.android.tools.build:gradle:3.2.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
        // implementation 'android.arch.lifecycle:common-java8:1.1.0'
+             // Google Services dependency
+        classpath 'com.google.gms:google-services:4.3.2'    
     }
 }
 

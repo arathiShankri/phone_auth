@@ -20,8 +20,6 @@ class GroupBloc extends Bloc<GroupEvent, GroupState> {
       case GroupEvents.LoadGroup:
         break;
       case GroupEvents.AddGroup:
-        debugPrint("name=" + event.name().toString());
-
         yield* _mapAddGroupToState(event);
         break;
       case GroupEvents.EditGroup:

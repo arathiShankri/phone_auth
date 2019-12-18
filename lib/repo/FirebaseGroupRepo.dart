@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:myturn/models/group.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -9,7 +10,7 @@ class FirebaseGroupRepo implements AbstractGroupRepo {
 
   FirebaseGroupRepo();
   @override
-  Future<void> addGroup(Group group) {
+  Future<void> addGroup(Group group) async {
     // Get the Firestore document by converting the POJO to an entity to a document
     return groupCollection.add(group.toEntity().toDocument());
   }
