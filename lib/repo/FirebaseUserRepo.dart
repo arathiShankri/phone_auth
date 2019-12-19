@@ -1,5 +1,6 @@
 import 'package:myturn/core/repo/AbstractUserRepo.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:myturn/models/user.dart';
 
 class FirebaseUserRepo implements AbstractUserRepo {
   final FirebaseAuth _firebaseAuth;
@@ -28,8 +29,10 @@ class FirebaseUserRepo implements AbstractUserRepo {
   }
 
   @override
-  Future<String> getUserId() async {
-    return (await _firebaseAuth.currentUser()).uid;
+  Future<User> getUser() async {
+    /// ?? Looks like firebase user table has most of the required information, need to check if we need a application level table
+    FirebaseUser firebaseUser = await _firebaseAuth.currentUser();
+    return User(userId: firebaseUser.uid, userName: firebaseUser.displayName, phoneNum: firebaseUser.phoneNumber);
   }
 
   @override

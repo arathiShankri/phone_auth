@@ -21,7 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
         builder: (context) => Container(
             color: Theme.of(context).backgroundColor,
             child: SafeArea(
-              minimum: const EdgeInsets.fromLTRB(8, 35, 8, 10), //provide extra padding on all 4 sides
+              minimum: const EdgeInsets.fromLTRB(5, 55, 5, 10), //provide extra padding on all 4 sides
               child: _screen(context),
             )),
       ),
@@ -33,26 +33,31 @@ class _HomeScreenState extends State<HomeScreen> {
     ThemeProvider.of(context).currentTheme.mediaQueryData(MediaQuery.of(context));
 
     return Scaffold(
-      drawerScrimColor: Colors.red, //Theme.of(context).backgroundColor,
+      drawerScrimColor: Theme.of(context).backgroundColor,
       appBar: _appBar(context),
       body: _body(context),
-
+      // show this only when the user is authenticated
       bottomNavigationBar: _bottomNav(context),
     );
   } //_screen
 
   /// build body
   _body(BuildContext context) {
-    return Center(
-      child: Container(
-        margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
-        child: Text(
+    return Container(
+        //padding: const EdgeInsets.fromLTRB(0, 10, 0, 5),
+        child: Column(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: <Widget>[
+        Text(
           "Hello! Welcome to MyTurn!",
           textScaleFactor: 2.0,
-          textAlign: TextAlign.center,
         ),
-      ),
-    );
+        Text(
+          "Lets get you started!",
+          textScaleFactor: 1.5,
+        ),
+      ],
+    ));
   }
 
   ///Using PreferredSize instead of directly using an AppBar to provide box decoration and other styling

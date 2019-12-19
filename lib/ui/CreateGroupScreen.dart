@@ -135,7 +135,7 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
               onSaved: (value) => _groupValues['address'] = value,
             ),
             TextFormField(
-              decoration: InputDecoration(hintText: "Phone #"),
+              decoration: InputDecoration(labelText: "Phone #"),
               validator: (value) {
                 if (value.isEmpty) {
                   return 'Please enter phone number!';
@@ -152,6 +152,6 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
 
   /// This method gets the values from the global form variables and returns a Group object
   Group _createGroupObj() {
-    return Group(groupName: _groupValues['group_name'], address: _groupValues['address'], adminId: "Admin", groupId: 'gid', phoneNum: _groupValues['phone_num']);
+    return Group(groupName: _groupValues['group_name'], address: _groupValues['address'], adminId: "Admin", phoneNum: _groupValues['phone_num']);
   }
 } // End of CreateGroupScreen
