@@ -20,6 +20,7 @@ abstract class AbstractTheme {
   Size size;
   String androidOriOS;
   String model;
+  Color textColor;
 
   _deviceInfo() async {
     DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();

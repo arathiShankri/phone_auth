@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:myturn/injection/MainModule.dart';
 import 'package:myturn/Routes.dart';
 import 'package:myturn/core/theme/AppTheme.dart';
+import 'package:myturn/ui/PhoneAuthScreen.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen() : super();
@@ -43,21 +44,29 @@ class _HomeScreenState extends State<HomeScreen> {
 
   /// build body
   _body(BuildContext context) {
+    return Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisSize: MainAxisSize.max,
+        children: <Widget>[_header(), PhoneAuthScreen().buildPhoneAuthTextFields(context)]);
+  }
+
+  Widget _header() {
     return Container(
-        //padding: const EdgeInsets.fromLTRB(0, 10, 0, 5),
-        child: Column(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: <Widget>[
-        Text(
-          "Hello! Welcome to MyTurn!",
-          textScaleFactor: 2.0,
-        ),
-        Text(
-          "Lets get you started!",
-          textScaleFactor: 1.5,
-        ),
-      ],
-    ));
+        padding: const EdgeInsets.fromLTRB(0, 20, 0, 5),
+        alignment: Alignment.center,
+        child:
+            Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, crossAxisAlignment: CrossAxisAlignment.center, mainAxisSize: MainAxisSize.max, children: <Widget>[
+          Text(
+            "Hello! Welcome to MyTurn!",
+            textScaleFactor: 2.0,
+          ),
+          Text(""),
+          Text(
+            "Lets get you started!",
+            textScaleFactor: 1.5,
+          ),
+        ]));
   }
 
   ///Using PreferredSize instead of directly using an AppBar to provide box decoration and other styling
