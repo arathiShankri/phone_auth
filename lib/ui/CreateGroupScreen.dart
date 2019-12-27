@@ -110,9 +110,9 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
       margin: EdgeInsets.all(15),
       child: Form(
         key: _formKey,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisSize: MainAxisSize.max,
+        child: Wrap(
+          //crossAxisAlignment: CrossAxisAlignment.center,
+          //mainAxisSize: MainAxisSize.max,
           children: <Widget>[
             TextFormField(
               validator: (value) {

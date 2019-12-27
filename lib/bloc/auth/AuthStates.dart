@@ -1,7 +1,8 @@
+import 'package:flutter/material.dart';
 import 'package:myturn/core/bloc/AbstractState.dart';
 import 'package:myturn/models/user.dart';
 
-enum AuthStates { UninitializedState, AuthenticatedState, UnAuthenticatedState }
+enum AuthStates { UninitializedState, AuthenticatedState, UnAuthenticatedState, CodeSentState }
 
 abstract class AuthState extends AbstractState {
   AuthState() : super();
@@ -19,7 +20,7 @@ class AuthenticatedState extends AuthState {
   final User user;
 
   // user is a required parameter to create the Authenticated state
-  AuthenticatedState(this.user);
+  AuthenticatedState({@required this.user});
 
   @override
   List<Object> get props => [];
@@ -40,5 +41,18 @@ class UnAuthenticatedState extends AuthState {
   @override
   AuthStates name() {
     return AuthStates.UnAuthenticatedState;
+  }
+}
+
+/// This state is set in response to the event to send sms code to the user.
+class CodeSentState extends AuthState {
+  CodeSentState();
+
+  @override
+  List<Object> get props => [];
+
+  @override
+  AuthStates name() {
+    return AuthStates.CodeSentState;
   }
 }

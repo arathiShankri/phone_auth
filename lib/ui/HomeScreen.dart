@@ -1,7 +1,12 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:myturn/bloc/auth/auth_bloc.dart';
 import 'package:myturn/injection/MainModule.dart';
 import 'package:myturn/Routes.dart';
 import 'package:myturn/core/theme/AppTheme.dart';
+import 'package:myturn/injection/RepoModule.dart';
+import 'package:myturn/ui/GroupOptionsScreen.dart';
 import 'package:myturn/ui/PhoneAuthScreen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -13,6 +18,18 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final MainModule mainModule = MainModule();
+  FirebaseUser _firebaseUser;
+
+  final AuthBloc _authBloc = RepoModule().get<AuthBloc>();
+
+  void initState() {
+    super.initState();
+    FirebaseAuth.instance.currentUser().then((user) {
+      setState(() {
+        _firebaseUser = user;
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,19 +53,31 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       drawerScrimColor: Theme.of(context).backgroundColor,
       appBar: _appBar(context),
-      body: _body(context),
+      body: BlocBuilder(
+          bloc: _authBloc,
+          builder: (BuildContext context, state) {
+            _body(context);
+          }),
       // show this only when the user is authenticated
-      bottomNavigationBar: _bottomNav(context),
+      //bottomNavigationBar: _bottomNav(context),
     );
   } //_screen
 
   /// build body
-  _body(BuildContext context) {
-    return Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisSize: MainAxisSize.max,
-        children: <Widget>[_header(), PhoneAuthScreen().buildPhoneAuthTextFields(context)]);
+  Widget _initialLandingScreen(BuildContext context) {
+    return Wrap(runSpacing: 40.0, alignment: WrapAlignment.spaceAround, children: <Widget>[_header(), PhoneAuthScreen()]);
+  }
+
+  Widget _body(BuildContext context) {
+    Widget widget;
+
+    if (_firebaseUser != null) {
+      widget = GroupOptionsScreen().groupOptions(context);
+    } else {
+      widget = _initialLandingScreen(context);
+    }
+
+    return widget;
   }
 
   Widget _header() {

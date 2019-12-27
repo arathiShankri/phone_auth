@@ -20,7 +20,7 @@ dependencies:
   flutter:
     sdk: flutter
   device_info: ^0.4.1+1
-  flutter_bloc: ^2.0.0
+  flutter_bloc: ^3.0.0
   equatable: ^1.0.0
   flutter_simple_dependency_injection: ^1.0.1
   cloud_firestore: ^0.12.7

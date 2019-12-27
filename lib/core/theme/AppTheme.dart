@@ -21,6 +21,7 @@ abstract class AbstractTheme {
   String androidOriOS;
   String model;
   Color textColor;
+  //Color errorColor;
 
   _deviceInfo() async {
     DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
@@ -39,10 +40,7 @@ abstract class AbstractTheme {
   }
 
   ThemeData getTheme() {
-    return ThemeData(
-      brightness: Brightness.light,
-      fontFamily: fontFamily,
-    );
+    return ThemeData(brightness: Brightness.light, fontFamily: fontFamily, errorColor: Colors.red);
   }
 
   void mediaQueryData(MediaQueryData mqd) {

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:myturn/core/bloc/AbstractEvent.dart';
-import 'package:myturn/models/group.dart';
+import 'package:myturn/models/models.dart';
 
-enum GroupEvents { LoadGroup, AddGroup, EditGroup, DeleteGroup, InviteToGroup }
+enum GroupEvents { LoadGroup, AddGroup, EditGroup, DeleteGroup, InviteToGroup, ChkUserInGroup }
 
 abstract class GroupEvent extends AbstractEvent {}
 
@@ -57,9 +57,24 @@ class DeleteGroup extends GroupEvent {
   }
 }
 
+/// Event to invite other users to the group
 class InviteToGroup extends GroupEvent {
   @override
   GroupEvents name() {
     return GroupEvents.InviteToGroup;
+  }
+}
+
+/// Event to check if a certain user is in any group or in a certain group that is sent as input value to the constructor
+/// Hence, the group is not a required field
+class ChkUserInGroup extends GroupEvent {
+  final Group group;
+  final User user;
+
+  ChkUserInGroup({@required this.user, this.group});
+
+  @override
+  GroupEvents name() {
+    return GroupEvents.ChkUserInGroup;
   }
 }
