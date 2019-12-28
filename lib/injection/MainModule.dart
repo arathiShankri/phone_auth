@@ -1,4 +1,5 @@
 import 'package:flutter_simple_dependency_injection/Injector.dart';
+import 'package:myturn/injection/AuthModule.dart';
 import 'package:myturn/injection/GroupModule.dart';
 import 'package:myturn/core/CoreModule.dart';
 import 'package:myturn/injection/RepoModule.dart';
@@ -34,5 +35,6 @@ class MainModule extends AbstractModule {
     CoreModule().configure(injector);
     GroupModule().configure(injector);
     RepoModule().configure(injector);
+    AuthModule().configure(injector);
   }
 }

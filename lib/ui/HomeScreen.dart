@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:myturn/bloc/auth/auth_bloc.dart';
+import 'package:myturn/injection/AuthModule.dart';
 import 'package:myturn/injection/MainModule.dart';
 import 'package:myturn/Routes.dart';
 import 'package:myturn/core/theme/AppTheme.dart';
@@ -20,7 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
   final MainModule mainModule = MainModule();
   FirebaseUser _firebaseUser;
 
-  final AuthBloc _authBloc = RepoModule().get<AuthBloc>();
+  final AuthBloc _authBloc = MainModule().get<AuthBloc>();
 
   void initState() {
     super.initState();
@@ -55,8 +56,8 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: _appBar(context),
       body: BlocBuilder(
           bloc: _authBloc,
-          builder: (BuildContext context, state) {
-            _body(context);
+          builder: (BuildContext context, AuthState authState) {
+            return _body(context, authState);
           }),
       // show this only when the user is authenticated
       //bottomNavigationBar: _bottomNav(context),
@@ -68,15 +69,37 @@ class _HomeScreenState extends State<HomeScreen> {
     return Wrap(runSpacing: 40.0, alignment: WrapAlignment.spaceAround, children: <Widget>[_header(), PhoneAuthScreen()]);
   }
 
-  Widget _body(BuildContext context) {
+  /// Method
+  Widget _body(BuildContext context, AuthState authState) {
     Widget widget;
 
-    if (_firebaseUser != null) {
+    /*if (_firebaseUser != null) {
       widget = GroupOptionsScreen().groupOptions(context);
     } else {
       widget = _initialLandingScreen(context);
+    }*/
+    switch (authState.name()) {
+      case AuthStates.UninitializedState:
+        // Check if the user is authenticated or not
+        this._authBloc.add(AuthModule().get<AppStart>()); // this event will either send back Authenticated or UnAuthenticated
+        widget = Center(
+            child: CircularProgressIndicator(
+          value: null, // drawing of the circle does not depend on any value
+          strokeWidth: 5.0, // line width
+        ));
+        break;
+      case AuthStates.CodeSentState:
+        break;
+      case AuthStates.UnAuthenticatedState:
+        // If user is not authenticated, then display the screen to enter phone number to authenticate the user.
+        widget = _initialLandingScreen(context);
+        break;
+      case AuthStates.AuthenticatedState:
+        // Check if the user is in group, if not show screen that will display Group Options
+        // IF the user is already in a group, show the screen that displays booked slots and ability to add new slot
+        widget = GroupOptionsScreen().groupOptions(context);
+        break;
     }
-
     return widget;
   }
 
