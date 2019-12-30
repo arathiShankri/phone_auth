@@ -14,7 +14,7 @@ class FirebaseAuthRepo implements AbstractAuthRepo {
   Future<void> verifyPhoneNumber(String phoneNumber) async {
     await _firebaseAuth.verifyPhoneNumber(
         phoneNumber: "+1" + phoneNumber,
-        timeout: Duration(seconds: 0),
+        timeout: Duration(seconds: 1),
         verificationCompleted: (authCredential) => _verificationComplete(authCredential),
         // if there is an exception, get the exception message and set it to the return value
         verificationFailed: (authException) => _verificationFailed(authException),
