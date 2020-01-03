@@ -14,7 +14,7 @@ class FirebaseAuthRepo implements AbstractAuthRepo {
   Future<void> verifyPhoneNumber(String phoneNumber) async {
     await _firebaseAuth.verifyPhoneNumber(
         phoneNumber: "+1" + phoneNumber,
-        timeout: Duration(seconds: 1),
+        timeout: Duration(seconds: 0),
         verificationCompleted: (authCredential) => _verificationComplete(authCredential),
         // if there is an exception, get the exception message and set it to the return value
         verificationFailed: (authException) => _verificationFailed(authException),
@@ -27,6 +27,7 @@ class FirebaseAuthRepo implements AbstractAuthRepo {
   Future<User> getUser() async {
     /// ?? Looks like firebase user table has most of the required information, need to check if we need a application level table
     FirebaseUser firebaseUser = await _firebaseAuth.currentUser();
+
     return User(userId: firebaseUser.uid, userName: firebaseUser.displayName, phoneNum: firebaseUser.phoneNumber);
   }
 
@@ -44,7 +45,7 @@ class FirebaseAuthRepo implements AbstractAuthRepo {
 
   void _smsCodeSent(String verificationCode, List<int> code) {
     // set the verification code so that we can use it to log the user in
-    _verificationCode = verificationCode;
+    this._verificationCode = verificationCode;
   }
 
   String _verificationFailed(AuthException authException) {
@@ -53,7 +54,7 @@ class FirebaseAuthRepo implements AbstractAuthRepo {
 
   void _codeAutoRetrievalTimeout(String verificationCode) {
     // set the verification code so that we can use it to log the user in
-    _verificationCode = verificationCode;
+    this._verificationCode = verificationCode;
   }
 
   // smsCode is the code that is sent to the users phone that they enter in the textfield
@@ -66,7 +67,7 @@ class FirebaseAuthRepo implements AbstractAuthRepo {
     AuthCredential authCredential = PhoneAuthProvider.getCredential(smsCode: smsCode, verificationId: _verificationCode);
     FirebaseAuth.instance.signInWithCredential(authCredential).then((authResult) {
       _user = User(userId: authResult.uid, phoneNum: authResult.phoneNumber, userName: authResult.displayName);
-    });
+    }).catchError((onError) => _user = null);
     return _user;
   }
 }

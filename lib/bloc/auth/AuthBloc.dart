@@ -57,7 +57,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   /// This state is in response to the event when user wants to the SMS code to be resent.
   /// The code is not regnerated, but the existing code will be sent.
   Stream<AuthState> mapResendCodeState(AuthEvent event) async* {
-    await _authRepo.verifyPhoneNumber((event as SendCode).phoneNumber);
+    await _authRepo.verifyPhoneNumber((event as ResendCode).phoneNumber);
     yield CodeSentState();
   }
 
@@ -66,5 +66,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   Stream<AuthState> mapVerifyPhoneNumberState(AuthEvent event) async* {
     User _user = _authRepo.signInWithSmsCode((event as VerifyPhoneNumber).smsCode);
     yield AuthenticatedState(user: _user);
+    // check for exceptions and yield UnAuthenticatedState if there's an exception.
   }
 }

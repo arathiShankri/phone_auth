@@ -32,6 +32,11 @@ class SendCode extends AuthEvent {
 
 /// Event to resend the sms code to user
 class ResendCode extends AuthEvent {
+  final String phoneNumber;
+
+  ResendCode({@required this.phoneNumber});
+
+  @override
   @override
   AuthEvents name() {
     return AuthEvents.ResendCode;
