@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:myturn/core/bloc/AbstractState.dart';
 import 'package:myturn/models/user.dart';
 
-enum AuthStates { UninitializedState, AuthenticatedState, UnAuthenticatedState, CodeSentState }
+enum AuthStates { UninitializedState, AuthenticatedState, UnAuthenticatedState, CodeSentState, ErrorState }
 
 abstract class AuthState extends AbstractState {
   AuthState() : super();

@@ -14,7 +14,7 @@ class FirebaseAuthRepo implements AbstractAuthRepo {
   Future<void> verifyPhoneNumber(String phoneNumber) async {
     await _firebaseAuth.verifyPhoneNumber(
         phoneNumber: "+1" + phoneNumber,
-        timeout: Duration(seconds: 0),
+        timeout: Duration(seconds: 3),
         verificationCompleted: (authCredential) => _verificationComplete(authCredential),
         // if there is an exception, get the exception message and set it to the return value
         verificationFailed: (authException) => _verificationFailed(authException),
@@ -55,6 +55,7 @@ class FirebaseAuthRepo implements AbstractAuthRepo {
   void _codeAutoRetrievalTimeout(String verificationCode) {
     // set the verification code so that we can use it to log the user in
     this._verificationCode = verificationCode;
+    debugPrint("verify=" + this._verificationCode);
   }
 
   // smsCode is the code that is sent to the users phone that they enter in the textfield
@@ -67,7 +68,7 @@ class FirebaseAuthRepo implements AbstractAuthRepo {
     AuthCredential authCredential = PhoneAuthProvider.getCredential(smsCode: smsCode, verificationId: _verificationCode);
     FirebaseAuth.instance.signInWithCredential(authCredential).then((authResult) {
       _user = User(userId: authResult.uid, phoneNum: authResult.phoneNumber, userName: authResult.displayName);
-    }).catchError((onError) => _user = null);
+    }).catchError((onError) => throw Exception('Error logging in:$onError'));
     return _user;
   }
 }

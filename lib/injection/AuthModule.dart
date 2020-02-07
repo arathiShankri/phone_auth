@@ -24,7 +24,7 @@ class AuthModule extends AbstractModule {
     //events
     injector.map<AppStart>((i) => AppStart());
     injector.mapWithParams<SendCode>((i, p) => SendCode(phoneNumber: p['phoneNumber']));
-    injector.map<ResendCode>((i) => ResendCode());
+    injector.mapWithParams<ResendCode>((i, p) => ResendCode(phoneNumber: p['phoneNumber']));
     injector.mapWithParams<VerifyPhoneNumber>((i, p) => VerifyPhoneNumber(smsCode: p['smsCode']));
 
     //bloc

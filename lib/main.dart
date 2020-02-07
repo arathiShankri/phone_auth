@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:myturn/bloc/auth/auth_provider.dart';
 import 'package:myturn/injection/MainModule.dart';
 import 'package:myturn/Routes.dart';
+import 'package:provider/provider.dart';
 
 import 'core/theme/AppTheme.dart';
 
@@ -13,14 +15,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: "MyTurn",
-      debugShowCheckedModeBanner: false,
-      theme: ContemporaryTheme().getTheme(),
-      //home: HomeScreen(),
-      initialRoute: mainModule.get<Routes>().initalRoute(),
-      // Load the routes, so that they are available downstream
-      routes: mainModule.get<Routes>().routes(),
+    return ChangeNotifierProvider<AuthProvider>(
+      create: (context) => AuthProvider(),
+      child: MaterialApp(
+        title: "MyTurn",
+        debugShowCheckedModeBanner: false,
+        theme: ContemporaryTheme().getTheme(),
+        initialRoute: mainModule.get<Routes>().initalRoute(),
+        // Load the routes, so that they are available downstream
+        routes: mainModule.get<Routes>().routes(),
+      ),
     );
   }
 }
